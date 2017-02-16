@@ -3,55 +3,87 @@
 <head>
   <title>Crystal Game</title>
   
-  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- CSS stylesheet -->
+  <link rel="stylesheet" type= "text/css" href="assets/css/style.css">
+
+<!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|MedievalSharp" rel="stylesheet">
+
+
+
 
 </head>
 <body>
 
-  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+<div class="jumbotron">
+<h1 id="head">Crystal Game!</h1>
+<p id="instructions">Try to match the "Number to Match" by clicking the four crystals below! Each crystal has its own numerical value that changes each round!</p>
+</div>
 
-  <h2>Counter:<span id="counter"></span></h2>
-  <h2>Wins:<span id="win-total"></span></h2>
-  <h2>Losses:<span id="loss-total"></span></h2>
+
+<div class= "row">
+
+<div class= "col-lg-6" id="stats">
+  <h1>Number to Match: <span id="number-to-guess"></span></h1>
+
+  <h2>Counter: <span id="counter"></span></h2>
+  <h2>Wins: <span id="win-total"></span></h2>
+  <h2>Losses: <span id="loss-total"></span></h2>
+  </div>
+
+<div class= "col-lg-6">
   
-
-
-  
-  <div>
+  <div class= "row">
+ 
+    <div class= "col-lg-6" id= "crystals">
   <img id="green-crystal" src="assets/images/green.png">
-  </div>
+    </div>
 
-  <div>
+    <div class= "col-lg-6" id= "crystals">
   <img id="purple-crystal" src="assets/images/purple.png">
+    </div>
+
   </div>
 
-  <div>
+  <div class= "row">
+    <div class= "col-lg-6" id= "crystals">
   <img id="blue-crystal" src="assets/images/blue.png">
+    </div>
+
+    <div class= "col-lg-6" id= "crystals">
+  <img id="red-crystal" src="assets/images/red.png">
+    </div>
   </div>
 
-  <div>
-  <img id="red-crystal" src="assets/images/red.png">
   </div>
+
+</div>
 
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
 
   <script type="text/javascript">
-
-  var targetNumber = Math.floor(Math.random() * 102) + 19;
+  // Create random number for player to match
+  var targetNumber = Math.floor(Math.random() * 120) + 19;
   
+  // Create random numbers for each crystal to add
   var green = Math.floor(Math.random() * 12) + 1;
   var purple = Math.floor(Math.random() * 12) + 1;
   var blue = Math.floor(Math.random() * 12) + 1;
   var red = Math.floor(Math.random() * 12) + 1;
 
+  // Set stats to 0
   var counter = 0;
   var wins = 0;
   var losses = 0;
 
+  // Insert the random number into html
   $("#number-to-guess").text(targetNumber);
 
   
-
+// Create a function that restarts the game without having to refresh the page. The wins and losses do not restart.
 function restart(){
   targetNumber = Math.floor(Math.random() * 102) + 19;
 
@@ -68,18 +100,23 @@ function restart(){
 
 };
 
+// Create a function to add up the counter when a crystal is clicked. Distiguish them by color.
 function crystalClick(color) {
+  
+// The counter goes up each time a crystal is clicked
   counter += color;
 
   $("#counter").empty();
   $("#counter").append(counter);
 
+// If the player losses then the number of losses goes up by one and the game restarts
   if (counter > targetNumber) {
     losses++;
     $("#loss-total").html(losses);
     restart();
   }
 
+// If the player wins the number of wins goes up by one and the game restarts
   else if (counter === targetNumber) {
     wins++;
     $("#win-total").html(wins);
@@ -87,6 +124,7 @@ function crystalClick(color) {
   };
 };
 
+// Create the on click function for each crystal, distiguished by color
 $("#green-crystal").click(function() {
       crystalClick(green);
   });

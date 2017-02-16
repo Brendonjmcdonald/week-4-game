@@ -1,0 +1,33 @@
+body, .jumbotron{
+	background-image: url("http://blogimg.ngfiles.com/879000/879591/253655582_dungeon.jpg");
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+	color: white;
+}
+
+#green-crystal, #purple-crystal, 
+#blue-crystal, #red-crystal {
+	height: 219px;
+	width: auto;
+	
+}
+
+h1 {
+	font-family: 'MedievalSharp', cursive;
+	color: white;
+}
+
+h2, p {
+	font-family: 'Cinzel', serif;
+	color: white;
+}
+
+#stats, #head, #instructions{
+	text-align: center;
+}
+
+#crystals {
+	text-align: center;
+}
