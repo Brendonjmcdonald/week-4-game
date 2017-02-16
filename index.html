@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crystal Game</title>
+  
+  
+
+</head>
+<body>
+
+  <h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+  <h2>Counter:<span id="counter"></span></h2>
+  <h2>Wins:<span id="win-total"></span></h2>
+  <h2>Losses:<span id="loss-total"></span></h2>
+  
+
+
+  
+  <div>
+  <img id="green-crystal" src="assets/images/green.png">
+  </div>
+
+  <div>
+  <img id="purple-crystal" src="assets/images/purple.png">
+  </div>
+
+  <div>
+  <img id="blue-crystal" src="assets/images/blue.png">
+  </div>
+
+  <div>
+  <img id="red-crystal" src="assets/images/red.png">
+  </div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+  <script type="text/javascript">
+
+  var targetNumber = Math.floor(Math.random() * 102) + 19;
+  
+  var green = Math.floor(Math.random() * 12) + 1;
+  var purple = Math.floor(Math.random() * 12) + 1;
+  var blue = Math.floor(Math.random() * 12) + 1;
+  var red = Math.floor(Math.random() * 12) + 1;
+
+  var counter = 0;
+  var wins = 0;
+  var losses = 0;
+
+  $("#number-to-guess").text(targetNumber);
+
+  
+
+function restart(){
+  targetNumber = Math.floor(Math.random() * 102) + 19;
+
+  $("#number-to-guess").text(targetNumber);
+
+  green = Math.floor(Math.random() * 12) + 1;
+  purple = Math.floor(Math.random() * 12) + 1;
+  blue = Math.floor(Math.random() * 12) + 1;
+  red = Math.floor(Math.random() * 12) + 1;
+
+  counter = 0;
+
+  $("#counter").text(counter);
+
+};
+
+function crystalClick(color) {
+  counter += color;
+
+  $("#counter").empty();
+  $("#counter").append(counter);
+
+  if (counter > targetNumber) {
+    losses++;
+    $("#loss-total").html(losses);
+    restart();
+  }
+
+  else if (counter === targetNumber) {
+    wins++;
+    $("#win-total").html(wins);
+    restart();
+  };
+};
+
+$("#green-crystal").click(function() {
+      crystalClick(green);
+  });
+
+  $("#purple-crystal").click(function() {
+      crystalClick(purple);
+  });
+
+  $("#blue-crystal").click(function() {
+      crystalClick(blue);
+  });
+  $("#red-crystal").click(function() {
+      crystalClick(red);
+  });
+
+  
+  
+</script>
+  
+</body>
+</html>
